@@ -41,8 +41,14 @@ const updateWeatherInfo = (data) => {
     weatherElement.textContent = `Clima: ${weather[0].description}`;
 
     // Atualiza a cor do plano de fundo
-    const isRaining = weather[0].main.toLowerCase().includes("rain");
-    document.body.style.backgroundColor = isRaining ? "#a9a9a9" : "#87ceeb"; // Cinza para chuva, azul para outros climas
+    const weatherCondition = weather[0].main.toLowerCase();
+    if (weatherCondition.includes("rain")) {
+        document.body.style.backgroundColor = "#00008b"; // Azul escuro para chuva
+    } else if (weatherCondition.includes("cloud")) {
+        document.body.style.backgroundColor = "#a9a9a9"; // Cinza para nublado
+    } else {
+        document.body.style.backgroundColor = "#87ceeb"; // Azul claro para outros climas
+    }
 };
 
 // Lida com a submissão do formulário
